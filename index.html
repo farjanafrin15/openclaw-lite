@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OpenClaw Lite Chat</title>
+</head>
+<body>
+  <h1>OpenClaw Lite Chat</h1>
+  <input type="text" id="message" placeholder="Type your message..." />
+  <button onclick="sendMessage()">Send</button>
+  <div id="reply" style="margin-top:20px;"></div>
+
+  <script>
+    async function sendMessage() {
+      const msg = document.getElementById('message').value;
+      const res = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: msg })
+      });
+      const data = await res.json();
+      document.getElementById('reply').innerText = data.reply;
+    }
+  </script>
+</body>
+</html>
