@@ -16,7 +16,7 @@ const BOT_PERSONA = process.env.BOT_PERSONA || "You are a friendly female assist
 app.post("/chat", async (req, res) => {
   const { message } = req.body;
   const response = await openai.chat.completions.create({
-    model: "gpt-3.5-turbo",
+    model: "gpt-4o-mini,
     messages: [
       { role: "system", content: BOT_PERSONA },
       { role: "user", content: message }
